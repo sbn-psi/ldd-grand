@@ -181,6 +181,7 @@
     <rule_context>grand:TEL_Readout</rule_context>
     <rule_assign>name="last_record" value="grand:last_record"</rule_assign>
     <rule_assign>name="position" value="position()"</rule_assign>    
+    <rule_assign>name="count" value="count(../grand:TEL_Readout)"</rule_assign>    
     <rule_assign>name="local_id" value="../../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
     <rule_assign>name="record_count" value="number(//*[pds:local_identifier=$local_id]/pds:records)"</rule_assign>
     <DD_Rule_Statement>
@@ -190,7 +191,7 @@
     </DD_Rule_Statement>
     <DD_Rule_Statement>
       <rule_type>Assert</rule_type>
-      <rule_test>(../grand_TEL_Readout[grand:first_record=$last_record and position()=$position+1]) or $record_count=$last_record</rule_test>
+      <rule_test>($position=$count or ../grand_TEL_Readout[position()=$position+1]/grand:first_record=$last_record)</rule_test>
       <rule_message>Each TEL_Readout must be followed by a new TEL_Readout that starts where the previous one ended, except for the last record.</rule_message>
     </DD_Rule_Statement>
   </DD_Rule>
@@ -221,6 +222,7 @@
     <rule_context>grand:TEL_SOH</rule_context>
     <rule_assign>name="last_record" value="grand:last_record"</rule_assign>
     <rule_assign>name="position" value="position()"</rule_assign>    
+    <rule_assign>name="count" value="count(../grand:TEL_SOH)"</rule_assign>    
     <rule_assign>name="local_id" value="../../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
     <rule_assign>name="record_count" value="number(//*[pds:local_identifier=$local_id]/pds:records)"</rule_assign>
     <DD_Rule_Statement>
@@ -230,7 +232,7 @@
     </DD_Rule_Statement>
     <DD_Rule_Statement>
       <rule_type>Assert</rule_type>
-      <rule_test>(../grand_TEL_SOH[grand:first_record=$last_record and position()=$position+1]) or $record_count=$last_record</rule_test>
+      <rule_test>($position=$count or ../grand_TEL_SOH[position()=$position+1]/grand:first_record=$last_record)</rule_test>
       <rule_message>Each TEL_SOH must be followed by a new TEL_SOH that starts where the previous one ended, except for the last record.</rule_message>
     </DD_Rule_Statement>
   </DD_Rule>
