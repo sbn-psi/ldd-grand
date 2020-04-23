@@ -155,64 +155,84 @@
     </DD_Rule_Statement>
   </DD_Rule>
 
-<!--
   <DD_Rule>
-    <local_identifier></local_identifier>
-    <rule_context>TEL_Readout_List</rule_context>
-    <DD_Rule_Statement>
-        <rule_type>Assert</rule_type>
-        <rule_test></rule_test>
-        <rule_message>One TEL_Readout must start with '1'</rule_message>
-    </DD_Rule_Statement>
-    <DD_Rule_Statement>
-        <rule_type>Assert</rule_type>
-        <rule_test></rule_test>
-        <rule_message>Each TEL_Readout must have a start less than its end</rule_message>
-    </DD_Rule_Statement>
+    <local_identifier>rules_tel_readout_list</local_identifier>
+    <rule_context>grand:TEL_Readout_List</rule_context>
+    <rule_assign>name="local_id" value="../../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
+    <rule_assign>name="record_count" value="number(//*[pds:local_identifier=$local_id]/pds:records)"</rule_assign>
+
 
     <DD_Rule_Statement>
         <rule_type>Assert</rule_type>
-        <rule_test></rule_test>
-        <rule_message>One TEL_Readout must end with with the same number of records as the table</rule_message>
+        <rule_test>grand:TEL_Readout[grand:first_record=1]</rule_test>
+        <rule_message>The first TEL_Readout must start with '1'</rule_message>
+    </DD_Rule_Statement>
+
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>grand:TEL_Readout[grand:last_record=$record_count]</rule_test>
+      <rule_message>One TEL_Readout must end with the value of the record count</rule_message>
+    </DD_Rule_Statement>
+
+  </DD_Rule>
+
+  <DD_Rule>
+    <local_identifier>rules_tel_readout</local_identifier>
+    <rule_context>grand:TEL_Readout</rule_context>
+    <rule_assign>name="last_record" value="grand:last_record"</rule_assign>
+    <rule_assign>name="position" value="position()"</rule_assign>    
+    <rule_assign>name="local_id" value="../../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
+    <rule_assign>name="record_count" value="number(//*[pds:local_identifier=$local_id]/pds:records)"</rule_assign>
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>grand:last_record >= grand:first_record</rule_test>
+      <rule_message>In the grand:TEL_Readout class, the index of the last record must be greater than or equal to the index of the first record.</rule_message>
     </DD_Rule_Statement>
     <DD_Rule_Statement>
-        <rule_type>Assert</rule_type>
-        <rule_test></rule_test>
-        <rule_message>One TEL_Readout must start where the previous rule ends</rule_message>
+      <rule_type>Assert</rule_type>
+      <rule_test>(../grand_TEL_Readout[grand:first_record=$last_record and position()=$position+1]) or $record_count=$last_record</rule_test>
+      <rule_message>Each TEL_Readout must be followed by a new TEL_Readout that starts where the previous one ended, except for the last record.</rule_message>
     </DD_Rule_Statement>
+  </DD_Rule>
+
+
+  <DD_Rule>
+    <local_identifier>rules_tel_soh_list</local_identifier>
+    <rule_context>grand:TEL_SOH_List</rule_context>
+    <rule_assign>name="local_id" value="../../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
+    <rule_assign>name="record_count" value="number(//*[pds:local_identifier=$local_id]/pds:records)"</rule_assign>
+
+
     <DD_Rule_Statement>
         <rule_type>Assert</rule_type>
-        <rule_test></rule_test>
-        <rule_message>TEL_Readouts may not overlap</rule_message>
+        <rule_test>grand:TEL_SOH[grand:first_record=1]</rule_test>
+        <rule_message>The first TEL_SOH must start with '1'</rule_message>
+    </DD_Rule_Statement>
+
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>grand:TEL_SOH[grand:last_record=$record_count]</rule_test>
+      <rule_message>One TEL_SOH must end with the value of the record count</rule_message>
     </DD_Rule_Statement>
   </DD_Rule>
 
   <DD_Rule>
-    <local_identifier></local_identifier>
-    <rule_context>TEL_SOH_List</rule_context>
-    <rule_message>Each TEL_SOH must have a start less than its end</rule_message>
+    <local_identifier>rules_tel_soh</local_identifier>
+    <rule_context>grand:TEL_SOH</rule_context>
+    <rule_assign>name="last_record" value="grand:last_record"</rule_assign>
+    <rule_assign>name="position" value="position()"</rule_assign>    
+    <rule_assign>name="local_id" value="../../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
+    <rule_assign>name="record_count" value="number(//*[pds:local_identifier=$local_id]/pds:records)"</rule_assign>
     <DD_Rule_Statement>
-        <rule_type>Assert</rule_type>
-        <rule_test></rule_test>
-        <rule_message>One TEL_SOH must start with '1'</rule_message>
+      <rule_type>Assert</rule_type>
+      <rule_test>grand:last_record >= grand:first_record</rule_test>
+      <rule_message>In the grand:TEL_SOH class, the index of the last record must be greater than or equal to the index of the first record.</rule_message>
     </DD_Rule_Statement>
     <DD_Rule_Statement>
-        <rule_type>Assert</rule_type>
-        <rule_test></rule_test>
-        <rule_message>One TEL_SOH must end with with the same number of records as the table</rule_message>
-    </DD_Rule_Statement>
-    <DD_Rule_Statement>
-        <rule_type>Assert</rule_type>
-        <rule_test></rule_test>
-        <rule_message>One TEL_SOH must start where the previous rule ends</rule_message>
-    </DD_Rule_Statement>
-    <DD_Rule_Statement>
-        <rule_type>Assert</rule_type>
-        <rule_test></rule_test>
-        <rule_message>TEL_SOH may not overlap</rule_message>
+      <rule_type>Assert</rule_type>
+      <rule_test>(../grand_TEL_SOH[grand:first_record=$last_record and position()=$position+1]) or $record_count=$last_record</rule_test>
+      <rule_message>Each TEL_SOH must be followed by a new TEL_SOH that starts where the previous one ended, except for the last record.</rule_message>
     </DD_Rule_Statement>
   </DD_Rule>
--->
-
 
 </Ingest_LDD>
