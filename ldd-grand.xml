@@ -64,6 +64,12 @@
     <definition>GRaND parameters</definition>
     <element_flag>true</element_flag>
     <DD_Association>
+      <identifier_reference>pds.Local_Internal_Reference</identifier_reference>
+      <reference_type>component_of</reference_type>
+      <minimum_occurrences>1</minimum_occurrences>
+      <maximum_occurrences>1</maximum_occurrences>
+    </DD_Association>
+    <DD_Association>
       <identifier_reference>grand.Tel_Readout_List</identifier_reference>
       <reference_type>component_of</reference_type>
       <minimum_occurrences>1</minimum_occurrences>
@@ -127,6 +133,28 @@
     </DD_Association>
   </DD_Class>
 
+  <DD_Rule>
+    <local_identifier>rule_grand_parameters</local_identifier>
+    <rule_context>grand:GRaND_Parameters</rule_context>
+    <rule_assign>name="local_id" value="pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>    
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>//(pds:Table_Character | pds:Table_Delimited | pds:Table_Binary)[pds:local_identifier = $local_id]</rule_test>
+      <rule_message>In the grand:GRaND_Parameters class, the local_identifier_reference (&lt;sch:value-of select='$local_id'/&gt;) must reference a table.</rule_message>
+      <rule_description>In the grand:GRaND_Parameters class, the local_identifier_reference must reference a table.</rule_description>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
+  <DD_Rule>
+    <local_identifier>grand_parameters_ref</local_identifier>
+    <rule_context>grand:GRaND_Parameters/pds:Internal_Reference</rule_context>
+    <DD_Rule_Statement>
+      <rule_type>Assert</rule_type>
+      <rule_test>pds:reference_type = ('grand_parameters_to_product')</rule_test>
+      <rule_message>In the nucspec:State_Table class, the attribute pds:reference_type must be equal to 'grand_parameters_to_product'.</rule_message>
+    </DD_Rule_Statement>
+  </DD_Rule>
+
 <!--
   <DD_Rule>
     <local_identifier></local_identifier>
@@ -136,7 +164,13 @@
         <rule_test></rule_test>
         <rule_message>One TEL_Readout must start with '1'</rule_message>
     </DD_Rule_Statement>
-  <DD_Rule_Statement>
+    <DD_Rule_Statement>
+        <rule_type>Assert</rule_type>
+        <rule_test></rule_test>
+        <rule_message>Each TEL_Readout must have a start less than its end</rule_message>
+    </DD_Rule_Statement>
+
+    <DD_Rule_Statement>
         <rule_type>Assert</rule_type>
         <rule_test></rule_test>
         <rule_message>One TEL_Readout must end with with the same number of records as the table</rule_message>
@@ -156,6 +190,7 @@
   <DD_Rule>
     <local_identifier></local_identifier>
     <rule_context>TEL_SOH_List</rule_context>
+    <rule_message>Each TEL_SOH must have a start less than its end</rule_message>
     <DD_Rule_Statement>
         <rule_type>Assert</rule_type>
         <rule_test></rule_test>
