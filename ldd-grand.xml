@@ -218,7 +218,7 @@
     </DD_Rule_Statement>
     <DD_Rule_Statement>
       <rule_type>Assert</rule_type>
-      <rule_test>($position=$count or ../grand_Tel_Readout[position()=$position+1]/grand:first_record=$last_record)</rule_test>
+      <rule_test>($position=$count or ../grand:Tel_Readout[position()=$position+1]/grand:first_record=$last_record+1)</rule_test>
       <rule_message>Each Tel_Readout must be followed by a new Tel_Readout that starts where the previous one ended, except for the last record.</rule_message>
     </DD_Rule_Statement>
   </DD_Rule>
@@ -259,7 +259,7 @@
     </DD_Rule_Statement>
     <DD_Rule_Statement>
       <rule_type>Assert</rule_type>
-      <rule_test>($position=$count or ../grand_Tel_SOH[position()=$position+1]/grand:first_record=$last_record)</rule_test>
+      <rule_test>($position=$count or ../grand:Tel_SOH[position()=$position+1]/grand:first_record=$last_record+1)</rule_test>
       <rule_message>Each Tel_SOH must be followed by a new Tel_SOH that starts where the previous one ended, except for the last record.</rule_message>
     </DD_Rule_Statement>
   </DD_Rule>
