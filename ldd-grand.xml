@@ -174,10 +174,10 @@
 
   <DD_Rule>
     <local_identifier>grand_parameters_ref</local_identifier>
-    <rule_context>grand:GRaND_Parameters/pds:Internal_Reference</rule_context>
+    <rule_context>grand:GRaND_Parameters/pds:Local_Internal_Reference</rule_context>
     <DD_Rule_Statement>
       <rule_type>Assert</rule_type>
-      <rule_test>pds:reference_type = ('grand_parameters_to_product')</rule_test>
+      <rule_test>pds:local_reference_type = ('grand_parameters_to_product')</rule_test>
       <rule_message>In the nucspec:State_Table class, the attribute pds:reference_type must be equal to 'grand_parameters_to_product'.</rule_message>
     </DD_Rule_Statement>
   </DD_Rule>
