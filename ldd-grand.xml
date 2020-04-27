@@ -184,31 +184,31 @@
 
   <DD_Rule>
     <local_identifier>rules_tel_readout_list</local_identifier>
-    <rule_context>grand:TEL_Readout_List</rule_context>
-    <rule_assign>name="local_id" value="../../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
-    <rule_assign>name="record_count" value="number(//*[pds:local_identifier=$local_id]/pds:records)"</rule_assign>
-
+    <rule_context>grand:Tel_Readout_List</rule_context>
+    <rule_assign>name="local_id" value="../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
+    <rule_assign>name="record_count" value="//(pds:Table_Character | pds:Table_Delimited | pds:Table_Binary)[pds:local_identifier=$local_id]/pds:records"</rule_assign>
+    <rule_assign>name="count" value="count(grand:Tel_Readout)"</rule_assign>
 
     <DD_Rule_Statement>
         <rule_type>Assert</rule_type>
-        <rule_test>grand:TEL_Readout[grand:first_record=1]</rule_test>
+        <rule_test>grand:Tel_Readout[grand:first_record=1]</rule_test>
         <rule_message>The first TEL_Readout must start with '1'</rule_message>
     </DD_Rule_Statement>
 
     <DD_Rule_Statement>
       <rule_type>Assert</rule_type>
-      <rule_test>grand:TEL_Readout[grand:last_record=$record_count]</rule_test>
-      <rule_message>One TEL_Readout must end with the value of the record count</rule_message>
+      <rule_test>grand:Tel_Readout[position()=$count]/grand:last_record=$record_count</rule_test>
+      <rule_message>One Tel_Readout must end with the value of the record count (&lt;sch:value-of select='$record_count'/&gt;)</rule_message>
     </DD_Rule_Statement>
 
   </DD_Rule>
 
   <DD_Rule>
     <local_identifier>rules_tel_readout</local_identifier>
-    <rule_context>grand:TEL_Readout</rule_context>
+    <rule_context>grand:Tel_Readout</rule_context>
     <rule_assign>name="last_record" value="grand:last_record"</rule_assign>
     <rule_assign>name="position" value="position()"</rule_assign>    
-    <rule_assign>name="count" value="count(../grand:TEL_Readout)"</rule_assign>    
+    <rule_assign>name="count" value="count(../grand:Tel_Readout)"</rule_assign>    
     <rule_assign>name="local_id" value="../../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
     <rule_assign>name="record_count" value="number(//*[pds:local_identifier=$local_id]/pds:records)"</rule_assign>
     <DD_Rule_Statement>
