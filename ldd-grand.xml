@@ -14,7 +14,7 @@
     <local_identifier>grand.first_record</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>GRaND Instrument</submitter_name>
-    <definition>the first record  (1-based, inclusive) for which this readout is applicable</definition>
+    <definition>The first record (1-based, inclusive) for which this readout is applicable</definition>
     <DD_Value_Domain>
       <enumeration_flag>false</enumeration_flag>
       <value_data_type>ASCII_Integer</value_data_type>
@@ -29,7 +29,7 @@
     <local_identifier>grand.last_record</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>GRaND Instrument</submitter_name>
-    <definition>the last record (1-based, inclusive) for which this interval is applicable</definition>
+    <definition>The last record (1-based, inclusive) for which this interval is applicable</definition>
     <DD_Value_Domain>
       <enumeration_flag>false</enumeration_flag>
       <value_data_type>ASCII_Integer</value_data_type>
@@ -44,7 +44,7 @@
     <local_identifier>grand.value</local_identifier>
     <nillable_flag>false</nillable_flag>
     <submitter_name>GRaND Instrument</submitter_name>
-    <definition>The length of the interval.</definition>
+    <definition>The duration of the interval.</definition>
     <DD_Value_Domain>
       <enumeration_flag>false</enumeration_flag>
       <value_data_type>ASCII_Integer</value_data_type>
@@ -85,7 +85,7 @@
     <version_id>1.0</version_id>
     <local_identifier>grand.Tel_Readout_List</local_identifier>
     <submitter_name>GRaND Instrument</submitter_name>
-    <definition>TelREADOUT keyword values</definition>
+    <definition>A list of scaler accumulation intervals, along with the records for which they were in effect.</definition>
     <DD_Association>
       <identifier_reference>grand.Tel_Readout</identifier_reference>
       <reference_type>component_of</reference_type>
@@ -99,7 +99,7 @@
     <version_id>1.0</version_id>
     <local_identifier>grand.Tel_Readout</local_identifier>
     <submitter_name>GRaND Instrument</submitter_name>
-    <definition>individual TELReadout entry</definition>
+    <definition>A single scaler accumulation interval, and the first and last records for which the interval was in effect.</definition>
     <DD_Association>
       <identifier_reference>grand.first_record</identifier_reference>
       <reference_type>attribute_of</reference_type>
@@ -125,7 +125,7 @@
     <version_id>1.0</version_id>
     <local_identifier>grand.Tel_SOH_List</local_identifier>
     <submitter_name>GRaND Instrument</submitter_name>
-    <definition>TelSOH keyword values</definition>
+    <definition>A list of state-of-health accumulation intervals, along with the records for which they were in effect.</definition>
     <DD_Association>
       <identifier_reference>grand.Tel_SOH</identifier_reference>
       <reference_type>component_of</reference_type>
@@ -139,7 +139,7 @@
     <version_id>1.0</version_id>
     <local_identifier>grand.Tel_SOH</local_identifier>
     <submitter_name>GRaND Instrument</submitter_name>
-    <definition>individual TELSOH entry</definition>
+    <definition>A single state-of-health accumulation interval, and the first and last records for which the interval was in effect.</definition>
     <DD_Association>
       <identifier_reference>grand.first_record</identifier_reference>
       <reference_type>attribute_of</reference_type>
