@@ -89,24 +89,24 @@
         <grand:Tel_Readout>
           <grand:first_record>1</grand:first_record>
           <grand:last_record>1</grand:last_record>
-          <grand:interval unit="s">1.0</grand:interval>
+          <grand:interval unit="s">1</grand:interval>
         </grand:Tel_Readout>
         <grand:Tel_Readout>
            <grand:first_record>2</grand:first_record>
            <grand:last_record>33165</grand:last_record>
-           <grand:interval unit="s">1.0</grand:interval>
+           <grand:interval unit="s">1</grand:interval>
          </grand:Tel_Readout>
        </grand:Tel_Readout_List>
        <grand:Tel_SOH_List>
         <grand:Tel_SOH>
           <grand:first_record>1</grand:first_record>
           <grand:last_record>1</grand:last_record>
-          <grand:interval unit="s">1.0</grand:interval>
+          <grand:interval unit="s">1</grand:interval>
         </grand:Tel_SOH>
         <grand:Tel_SOH>
           <grand:first_record>2</grand:first_record>
           <grand:last_record>33165</grand:last_record>
-          <grand:interval unit="s">1.0</grand:interval>
+          <grand:interval unit="s">1</grand:interval>
         </grand:Tel_SOH>
        </grand:Tel_SOH_List>
     </grand:GRaND_Parameters>
@@ -195,7 +195,7 @@
           <unit>Seconds</unit>
           <description>
     SCLK ticks at the end of the science accumulation interval (s) Each       
-    science data record has a unique SCLK value, which can be used as an      
+    science data record has a unique SCLK interval, which can be used as an      
     identifier.                                                               
           </description>
         </Field_Character>
