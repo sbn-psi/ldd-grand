@@ -85,20 +85,20 @@
          <local_identifier_reference>table</local_identifier_reference>
          <local_reference_type>grand_parameters_to_product</local_reference_type>
        </Local_Internal_Reference>
-       <grand:Tel_Readout_List>
-         <grand:Tel_Readout>
+       <grand:TELREADOUT_List>
+         <grand:TELREADOUT>
            <grand:first_record>1</grand:first_record>
            <grand:last_record>33165</grand:last_record>
            <grand:interval unit="s">1</grand:interval>
-         </grand:Tel_Readout>
-       </grand:Tel_Readout_List>
-       <grand:Tel_SOH_List>
-        <grand:Tel_SOH>
+         </grand:TELREADOUT>
+       </grand:TELREADOUT_List>
+       <grand:TELSOH_List>
+        <grand:TELSOH>
           <grand:first_record>1</grand:first_record>
           <grand:last_record>33164</grand:last_record>
           <grand:interval unit="s">1</grand:interval>
-        </grand:Tel_SOH>
-       </grand:Tel_SOH_List>
+        </grand:TELSOH>
+       </grand:TELSOH_List>
     </grand:GRaND_Parameters>
   </Mission_Area>
   <Discipline_Area>

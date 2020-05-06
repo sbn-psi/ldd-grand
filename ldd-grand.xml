@@ -67,13 +67,13 @@
       <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <identifier_reference>grand.Tel_Readout_List</identifier_reference>
+      <identifier_reference>grand.TELREADOUT_List</identifier_reference>
       <reference_type>component_of</reference_type>
       <minimum_occurrences>1</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
     </DD_Association>
     <DD_Association>
-      <identifier_reference>grand.Tel_SOH_List</identifier_reference>
+      <identifier_reference>grand.TELSOH_List</identifier_reference>
       <reference_type>component_of</reference_type>
       <minimum_occurrences>1</minimum_occurrences>
       <maximum_occurrences>1</maximum_occurrences>
@@ -81,13 +81,13 @@
   </DD_Class>
 
   <DD_Class>
-    <name>Tel_Readout_List</name>
+    <name>TELREADOUT_List</name>
     <version_id>1.0</version_id>
-    <local_identifier>grand.Tel_Readout_List</local_identifier>
+    <local_identifier>grand.TELREADOUT_List</local_identifier>
     <submitter_name>GRaND Instrument</submitter_name>
     <definition>A list of scaler accumulation intervals, along with the records for which they were in effect.</definition>
     <DD_Association>
-      <identifier_reference>grand.Tel_Readout</identifier_reference>
+      <identifier_reference>grand.TELREADOUT</identifier_reference>
       <reference_type>component_of</reference_type>
       <minimum_occurrences>1</minimum_occurrences>
       <maximum_occurrences>unbounded</maximum_occurrences>
@@ -95,9 +95,9 @@
   </DD_Class>
 
   <DD_Class>
-    <name>Tel_Readout</name>
+    <name>TELREADOUT</name>
     <version_id>1.0</version_id>
-    <local_identifier>grand.Tel_Readout</local_identifier>
+    <local_identifier>grand.TELREADOUT</local_identifier>
     <submitter_name>GRaND Instrument</submitter_name>
     <definition>A single scaler accumulation interval, and the first and last records for which the interval was in effect.</definition>
     <DD_Association>
@@ -121,13 +121,13 @@
   </DD_Class>
 
   <DD_Class>
-    <name>Tel_SOH_List</name>
+    <name>TELSOH_List</name>
     <version_id>1.0</version_id>
-    <local_identifier>grand.Tel_SOH_List</local_identifier>
+    <local_identifier>grand.TELSOH_List</local_identifier>
     <submitter_name>GRaND Instrument</submitter_name>
     <definition>A list of state-of-health accumulation intervals, along with the records for which they were in effect.</definition>
     <DD_Association>
-      <identifier_reference>grand.Tel_SOH</identifier_reference>
+      <identifier_reference>grand.TELSOH</identifier_reference>
       <reference_type>component_of</reference_type>
       <minimum_occurrences>1</minimum_occurrences>
       <maximum_occurrences>unbounded</maximum_occurrences>
@@ -135,9 +135,9 @@
   </DD_Class>
 
   <DD_Class>
-    <name>Tel_SOH</name>
+    <name>TELSOH</name>
     <version_id>1.0</version_id>
-    <local_identifier>grand.Tel_SOH</local_identifier>
+    <local_identifier>grand.TELSOH</local_identifier>
     <submitter_name>GRaND Instrument</submitter_name>
     <definition>A single state-of-health accumulation interval, and the first and last records for which the interval was in effect.</definition>
     <DD_Association>
@@ -183,84 +183,84 @@
   </DD_Rule>
 
   <DD_Rule>
-    <local_identifier>rules_tel_readout_list</local_identifier>
-    <rule_context>grand:Tel_Readout_List</rule_context>
+    <local_identifier>rules_TELREADOUT_list</local_identifier>
+    <rule_context>grand:TELREADOUT_List</rule_context>
     <rule_assign>name="local_id" value="../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
     <rule_assign>name="record_count" value="//(pds:Table_Character | pds:Table_Delimited | pds:Table_Binary)[pds:local_identifier=$local_id]/pds:records"</rule_assign>
-    <rule_assign>name="count" value="count(grand:Tel_Readout)"</rule_assign>
+    <rule_assign>name="count" value="count(grand:TELREADOUT)"</rule_assign>
 
     <DD_Rule_Statement>
         <rule_type>Assert</rule_type>
-        <rule_test>grand:Tel_Readout[grand:first_record=1]</rule_test>
-        <rule_message>The first Tel_Readout must start with '1'</rule_message>
+        <rule_test>grand:TELREADOUT[grand:first_record=1]</rule_test>
+        <rule_message>The first TELREADOUT must start with '1'</rule_message>
     </DD_Rule_Statement>
 
     <DD_Rule_Statement>
       <rule_type>Assert</rule_type>
-      <rule_test>grand:Tel_Readout[position()=$count]/grand:last_record=$record_count</rule_test>
-      <rule_message>One Tel_Readout must end with the value of the record count (&lt;sch:value-of select='$record_count'/&gt;)</rule_message>
+      <rule_test>grand:TELREADOUT[position()=$count]/grand:last_record=$record_count</rule_test>
+      <rule_message>One TELREADOUT must end with the value of the record count (&lt;sch:value-of select='$record_count'/&gt;)</rule_message>
     </DD_Rule_Statement>
 
   </DD_Rule>
 
   <DD_Rule>
-    <local_identifier>rules_tel_readout</local_identifier>
-    <rule_context>grand:Tel_Readout</rule_context>
+    <local_identifier>rules_TELREADOUT</local_identifier>
+    <rule_context>grand:TELREADOUT</rule_context>
     <rule_assign>name="last_record" value="grand:last_record"</rule_assign>
     <rule_assign>name="position" value="position()"</rule_assign>    
-    <rule_assign>name="count" value="count(../grand:Tel_Readout)"</rule_assign>    
+    <rule_assign>name="count" value="count(../grand:TELREADOUT)"</rule_assign>    
     <rule_assign>name="local_id" value="../../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
     <rule_assign>name="record_count" value="number(//*[pds:local_identifier=$local_id]/pds:records)"</rule_assign>
     <DD_Rule_Statement>
       <rule_type>Assert</rule_type>
       <rule_test>grand:last_record >= grand:first_record</rule_test>
-      <rule_message>In the grand:Tel_Readout class, the index of the last record must be greater than or equal to the index of the first record.</rule_message>
+      <rule_message>In the grand:TELREADOUT class, the index of the last record must be greater than or equal to the index of the first record.</rule_message>
     </DD_Rule_Statement>
     <DD_Rule_Statement>
       <rule_type>Assert</rule_type>
-      <rule_test>($position=$count or ../grand:Tel_Readout[position()=$position+1]/grand:first_record=$last_record+1)</rule_test>
-      <rule_message>Each Tel_Readout must be followed by a new Tel_Readout that starts where the previous one ended, except for the last record.</rule_message>
+      <rule_test>($position=$count or ../grand:TELREADOUT[position()=$position+1]/grand:first_record=$last_record+1)</rule_test>
+      <rule_message>Each TELREADOUT must be followed by a new TELREADOUT that starts where the previous one ended, except for the last record.</rule_message>
     </DD_Rule_Statement>
   </DD_Rule>
 
 
   <DD_Rule>
-    <local_identifier>rules_tel_soh_list</local_identifier>
-    <rule_context>grand:Tel_SOH_List</rule_context>
+    <local_identifier>rules_TELSOH_list</local_identifier>
+    <rule_context>grand:TELSOH_List</rule_context>
     <rule_assign>name="local_id" value="../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
     <rule_assign>name="record_count" value="number(//*[pds:local_identifier=$local_id]/pds:records)"</rule_assign>
 
 
     <DD_Rule_Statement>
         <rule_type>Assert</rule_type>
-        <rule_test>grand:Tel_SOH[grand:first_record=1]</rule_test>
-        <rule_message>The first Tel_SOH must start with '1'</rule_message>
+        <rule_test>grand:TELSOH[grand:first_record=1]</rule_test>
+        <rule_message>The first TELSOH must start with '1'</rule_message>
     </DD_Rule_Statement>
 
     <DD_Rule_Statement>
       <rule_type>Assert</rule_type>
-      <rule_test>grand:Tel_SOH[grand:last_record=$record_count]</rule_test>
-      <rule_message>One Tel_SOH must end with the value of the record count</rule_message>
+      <rule_test>grand:TELSOH[grand:last_record=$record_count]</rule_test>
+      <rule_message>One TELSOH must end with the value of the record count</rule_message>
     </DD_Rule_Statement>
   </DD_Rule>
 
   <DD_Rule>
-    <local_identifier>rules_tel_soh</local_identifier>
-    <rule_context>grand:Tel_SOH</rule_context>
+    <local_identifier>rules_TELSOH</local_identifier>
+    <rule_context>grand:TELSOH</rule_context>
     <rule_assign>name="last_record" value="grand:last_record"</rule_assign>
     <rule_assign>name="position" value="position()"</rule_assign>    
-    <rule_assign>name="count" value="count(../grand:Tel_SOH)"</rule_assign>    
+    <rule_assign>name="count" value="count(../grand:TELSOH)"</rule_assign>    
     <rule_assign>name="local_id" value="../../pds:Local_Internal_Reference/pds:local_identifier_reference"</rule_assign>
     <rule_assign>name="record_count" value="number(//*[pds:local_identifier=$local_id]/pds:records)"</rule_assign>
     <DD_Rule_Statement>
       <rule_type>Assert</rule_type>
       <rule_test>grand:last_record >= grand:first_record</rule_test>
-      <rule_message>In the grand:Tel_SOH class, the index of the last record must be greater than or equal to the index of the first record.</rule_message>
+      <rule_message>In the grand:TELSOH class, the index of the last record must be greater than or equal to the index of the first record.</rule_message>
     </DD_Rule_Statement>
     <DD_Rule_Statement>
       <rule_type>Assert</rule_type>
-      <rule_test>($position=$count or ../grand:Tel_SOH[position()=$position+1]/grand:first_record=$last_record+1)</rule_test>
-      <rule_message>Each Tel_SOH must be followed by a new Tel_SOH that starts where the previous one ended, except for the last record.</rule_message>
+      <rule_test>($position=$count or ../grand:TELSOH[position()=$position+1]/grand:first_record=$last_record+1)</rule_test>
+      <rule_message>Each TELSOH must be followed by a new TELSOH that starts where the previous one ended, except for the last record.</rule_message>
     </DD_Rule_Statement>
   </DD_Rule>
 
